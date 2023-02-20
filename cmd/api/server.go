@@ -13,6 +13,8 @@ func Server() {
 
 	// Get requests
 	r.GET("/ping", router.Ping)
+	r.GET("/get_rent_avg/:city/:state", router.GetForRentAverages)
+	r.GET("/get_forsale_avg/:city/:state", router.GetForSaleAverages)
 
 	// Post to scrape new city / town
 	r.POST("/add/:city/:state", router.AddCity)
@@ -20,6 +22,6 @@ func Server() {
 
 	err := r.Run(":2001")
 	if err != nil {
-		log.Fatal("[Error] failed to start Gin server due to: " + err.Error())
+		log.Panic("[Error] failed to start Gin server due to: " + err.Error())
 	}
 }
